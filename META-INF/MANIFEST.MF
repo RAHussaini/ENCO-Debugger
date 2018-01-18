@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: ECNO Debugger
+Bundle-SymbolicName: dk.dtu.debugger.ecno;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: dk.dtu.debugger.ecno.Activator
+Bundle-Vendor: DTU Compute
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.zest.core;bundle-version="1.5.300",
+ org.eclipse.zest.layouts;bundle-version="1.1.300",
+ dk.dtu.imm.se.ecno.core,
+ org.eclipse.core.resources,
+ org.eclipse.emf.ecore,
+ dk.dtu.imm.se.ecno.model;bundle-version="0.3.3"
+Bundle-RequiredExecutionEnvironment: JavaSE-9
+Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.ui.model,
+ org.eclipse.ui.views.properties
+Export-Package: dk.dtu.debugger.ecno.controllers,
+ dk.dtu.debugger.ecno.listeners
+ 

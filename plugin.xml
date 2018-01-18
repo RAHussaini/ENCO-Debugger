@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+ <!-- ******************         ********' -->
+   
+   <!-- ******************         ********' -->
+   
+   <!-- ******************         ********' -->
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="dk.dtu.debugger.ecno.views.ECNODebuggerViews"
+            name="ECNO Debugger">
+      </category>
+      <view
+            category="dk.dtu.debugger.ecno.views.ECNODebuggerViews"
+            class="dk.dtu.debugger.ecno.views.DebugView"
+            icon="icons/debug.png"
+            id="dk.dtu.debugger.ecno.views.debugViewId"
+            name="Debug ">
+      </view>
+      <view
+            category="dk.dtu.debugger.ecno.views.ECNODebuggerViews"
+            class="dk.dtu.debugger.ecno.views.BreakpointView"
+            icon="icons/breakpoint.png"
+            id="dk.dtu.debugger.ecno.views.breakpointViewId"
+            name="Breakpoints"
+            restorable="true">
+      </view>
+      <view
+            category="dk.dtu.debugger.ecno.views.ECNODebuggerViews"
+            class="dk.dtu.debugger.ecno.views.FilterView"
+            icon="icons/eclipse64.png"
+            id="dk.dtu.debugger.ecno.views.FilterView"
+            name="Filter"
+            restorable="true">
+      </view>
+      <view
+            category="dk.dtu.debugger.ecno.views.ECNODebuggerViews"
+            class="dk.dtu.debugger.ecno.views.OverviewView"
+            icon="icons/eclipse64.png"
+            id="dk.dtu.debugger.ecno.views.overviewView"
+            name="Overview"
+            restorable="true">
+      </view>
+   </extension>
+   <!-- ******************         ********' -->
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               id="dk.dtu.debugger.ecno.views.View"
+               minimized="false"
+               ratio="0.5"
+               relationship="left"
+               relative="org.eclipse.ui.views.ProblemView"
+               standalone="true">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   
+   <!-- ******************         ********' -->
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu">
+         <menu
+               label="File">
+            <command
+                  commandId="org.eclipse.ui.file.exit"
+                  label="Exit">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:dk.dtu.debugger.ecno.views.popupView">
+         <menu
+               label="Select Layout">
+            <command
+                  commandId="dk.dtu.debugger.ecno.commands.changeLayout"
+                  id="dk.dtu.debugger.ecno.commands.changeLayout.layouts.spring"
+                  label="Spring Layout"
+                  style="radio">
+               <parameter
+                     name="dk.dtu.debugger.ecno.commands.radioStateParameter"
+                     value="SPRING">
+               </parameter>
+            </command>
+            <command
+                  commandId="dk.dtu.debugger.ecno.commands.changeLayout"
+                  id="dk.dtu.debugger.ecno.commands.changeLayout.layouts.grid"
+                  label="Grid"
+                  style="radio">
+               <parameter
+                     name="dk.dtu.debugger.ecno.commands.radioStateParameter"
+                     value="GRID">
+               </parameter>
+            </command>
+            <command
+                  commandId="dk.dtu.debugger.ecno.commands.changeLayout"
+                  id="dk.dtu.debugger.ecno.commands.changeLayout.layouts.horizontalTree"
+                  label="Horezontal Tree"
+                  style="radio">
+               <parameter
+                     name="dk.dtu.debugger.ecno.commands.radioStateParameter"
+                     value="HORIZONTAL_TREE">
+               </parameter>
+            </command>
+            <command
+                  commandId="dk.dtu.debugger.ecno.commands.changeLayout"
+                  id="dk.dtu.debugger.ecno.commands.changeLayout.layouts.radial"
+                  label="Radial"
+                  style="radio">
+               <parameter
+                     name="dk.dtu.debugger.ecno.commands.radioStateParameter"
+                     value="RADIAL">
+               </parameter>
+            </command>
+            <command
+                  commandId="dk.dtu.debugger.ecno.commands.changeLayout"
+                  id="dk.dtu.debugger.ecno.commands.changeLayout.layouts.tree"
+                  label="Tree"
+                  style="radio">
+               <parameter
+                     name="dk.dtu.debugger.ecno.commands.radioStateParameter"
+                     value="TREE">
+               </parameter>
+            </command>
+         </menu>
+         <menu
+               label="show">
+            <command
+                  commandId="dk.dtu.debugger.ecno.commands.show.encountered"
+                  label="Show Encountered Elements"
+                  style="toggle">
+            </command>
+            <command
+                  commandId="dk.dtu.debugger.ecno.commands.show.added"
+                  label="show Added Elements"
+                  style="toggle">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   
+   <!-- ******************         ********' -->
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="dk.dtu.debugger.ecno.commands.ECNODebuggerCommands"
+            name="ECNO Debugger Commands">
+      </category>
+      <command
+            category="dk.dtu.debugger.ecno.commands.ECNODebuggerCommands"
+            defaultHandler="dk.dtu.debugger.ecno.commands.ChangeLayout"
+            id="dk.dtu.debugger.ecno.commands.changeLayout"
+            name="Change Layout">
+      </command>
+      <command
+            defaultHandler="dk.dtu.debugger.ecno.commands.ShowEncounteredElementsCmd"
+            id="dk.dtu.debugger.ecno.commands.show.encounterd"
+            name="Show Encountered Elements">
+      </command>
+      <command
+            defaultHandler="dk.dtu.debugger.ecno.commands.ShowAddedElementsCmd"
+            id="dk.dtu.debugger.ecno.commands.show.added"
+            name="show added elements">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="dk.dtu.debugger.ecno.commands.ChangeLayout"
+            id="dk.dtu.debugger.ecno.commands.changeLayout"
+            name="Unique name1">
+         <commandParameter
+               id="dk.dtu.debugger.ecno.commands.radioStateParameter"
+               name="Unique name2"
+               optional="false">
+         </commandParameter>
+         <state
+               class="org.eclipse.ui.handlers.RadioState:TREE"
+               id="org.eclipse.ui.commands.RadioState">
+         </state>
+         <state
+               id="org.eclipse.ui.commands.radioState">
+         </state>
+      </command>
+   </extension>
+   
+   <!-- ******************         ********' -->
+
+</plugin>
